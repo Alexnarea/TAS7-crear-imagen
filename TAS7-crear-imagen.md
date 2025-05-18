@@ -56,38 +56,41 @@ El estudiante debe conocer:
 
 Figura 8-1 Clonacion del repositorio frontend.
 
-<img src="./compos/c1.PNG" alt="drawing0" width="500"/>
+<img src="./dockimage/clonacion.PNG" alt="contenedor react docker" width="500"/>
 
 2. Ejecuta el proyecto localmente para verificar su correcto funcionamiento.
 
 Figura 8-2 Ejecutacion del proyecto localmente.
 
-<img src="./compos/c2.PNG" alt="drawing0" width="500"/>
+<img src="./dockimage/levantamiento.PNG" alt="contenedor react docker" width="500"/>
 
 3.Crea un archivo Dockerfile adecuado para contenerizar la aplicación.
 
 Figura 8-3 Creacion del archivo dockerfile.
 
-<img src="./compos/wp.PNG" alt="drawing0" width="500"/>
+<img src="./dockimage/file.PNG" alt="contenedor react docker" width="500"/>
 
 
 4. Genera la imagen Docker a partir del Dockerfile creado.
 
 Figura 8-4 Generacion de la imagen docker.
 
-<img src="./compos/net.PNG" alt="drawing0" width="500"/>
+<img src="./dockimage/i3.PNG" alt="contenedor react docker" width="500"/>
 
 5. Crear el contenedor con la aplicación.
 
 Figura 8-5 Creacion del contenedor 
 
-<img src="./compos/net.PNG" alt="drawing0" width="500"/>
+<img src="./dockimage/container.PNG" alt="contenedor react docker" width="500"/>
 
 ## 9. Resultados esperados
 
 Al finalizar la práctica, se logró cumplir exitosamente los objetivos planteados. Se creó una imagen Docker que contiene la aplicación React ``“suda-frontend-s6”`` y se desplegó correctamente un contenedor con esta imagen. La aplicación fue accesible a través del puerto ``8000`` del localhost.Durante el desarrollo se aplicaron conceptos fundamentales de contenerización, tales como la creación de imágenes Docker mediante un Dockerfile con multi-stage build para optimizar el tamaño de la imagen, el manejo de puertos para exponer el servicio y la ejecución de contenedores en modo desacoplado.
 
  Todo el desarrollo de la práctica fue documentado con capturas de pantalla que evidencian la clonación, la prueba local, la creación del Dockerfile, la construcción de la imagen y el despliegue del contenedor. Finalmente, se verificó que la aplicación funcionara correctamente en el entorno Docker.
+
+ <img src="./dockimage/resultado.PNG" alt="contenedor react docker" width="500"/>
+
 
 ## 10. Bibliografía
 
