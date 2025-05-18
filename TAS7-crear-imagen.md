@@ -1,25 +1,20 @@
 
-# TAS6 – Contenerización de una Aplicación React con Docker
-
+TAS7 - Crear imagen personalizada 
 ## 1. Título  
-**Contenerización de una Aplicación Web Frontend (React) con Docker**
+Contenerización de una Aplicación Web Frontend con Dockerfile
 
 ## 2. Tiempo de duración  
-**90 minutos.**
+El tiempo fue de 120 minutos. 
 
 ## 3. Fundamentos
 
-### Docker y Contenerización  
-Docker permite empaquetar una aplicación y todas sus dependencias en una imagen ligera, portátil y reutilizable llamada **contenedor**, que puede ejecutarse en cualquier sistema que tenga Docker instalado. Esto asegura que la aplicación funcione de la misma forma en desarrollo, pruebas y producción.
+### Dockerfile 
 
-Al contenerizar una aplicación React, se utiliza un archivo `Dockerfile` que indica paso a paso cómo construir la imagen: desde instalar dependencias hasta servir el contenido estático mediante un servidor (como `nginx` o el propio `node`).
+Un contenedor Docker tiene una vida limitada e interactúa con su entorno. Imagina que contenedor es como un organismo vivo. Piensa en un organismo unicelular, como una célula de levadura. Siguiendo esta analogía, una imagen Docker equivale, digamos, a la información genética: todos los contenedores creados a partir de una imagen son iguales, como todos los organismos unicelulares clonados a partir de una unidad de información genética. El Dockerfile define los pasos a seguir para crear una nueva imagen. Hay que entender que se empieza siempre con una imagen base existente. La nueva imagen nace de la imagen base. Además, hay ciertos cambios puntuales. En nuestro ejemplo de la célula de levadura, los cambios serían mutaciones (¿Qué Es El Dockerfile? - IONOS, n.d.). 
 
-### Ventajas de contenerizar aplicaciones frontend
+### ¿Cómo funciona un Dockerfile y cómo se crea una imagen a partir de él?
 
-- Portabilidad y consistencia entre entornos.
-- Despliegue sencillo en cualquier infraestructura compatible con Docker.
-- Aislamiento respecto al entorno host.
-- Reutilización de imágenes en diferentes entornos o proyectos.
+Dockerfile es un archivo de texto totalmente normal. El Dockerfile contiene un conjunto de instrucciones, cada una en una línea distinta. Para crear una Docker Image, las instrucciones se ejecutan una tras otra. Quizás te suene este esquema de la ejecución de un script por lotes. Durante la ejecución, se añaden paso por paso más capas a la imagen.  Una imagen Docker se crea ejecutando las instrucciones de un Dockerfile. Este paso se conoce como el proceso build y empieza con la ejecución del comando “docker build”. El contexto de construcción es un concepto crucial: define a qué archivos y directorios tiene acceso el proceso de construcción, donde un directorio local hace las veces de fuente. El contenido del directorio fuente se transfiere al Docker Daemon al accionar “docker build”. Las instrucciones contenidas en el Dockerfile reciben acceso a los archivos y directorios contenidos en el contexto de construcción (¿Qué Es El Dockerfile? - IONOS, n.d.).
 
 <img src="./docker-r/react-docker.png" alt="contenedor react docker" width="500"/>
 
@@ -36,106 +31,66 @@ El estudiante debe conocer:
 - Clonar un repositorio React.
 - Ejecutar el proyecto localmente.
 - Crear un archivo `Dockerfile` para contenerizar la aplicación.
-- Construir una imagen Docker.
-- Ejecutar un contenedor a partir de la imagen.
-- Verificar funcionamiento de la app en el navegador.
+- Generar la imagen Docker a partir del Dockerfile creado.
+- Crear el contenedor con la aplicación
+
 
 ## 6. Equipo necesario
 
-- Computador con Docker instalado.
+- Computador.
 - Navegador web.
-- Conexión a internet para clonar el repositorio.
+- Conexión a internet.
 
 ## 7. Material de apoyo
 
 - Documentación oficial de Docker.
 - Cheatsheet de comandos Docker.
-- Documentación de React.
-- Repositorio de la práctica:  
-  https://github.com/Daviddotcoms/suda-frontend-s6
+- Repositorio de la práctica.
+- Videos tutoriales.
+- Guía de asignatura.
 
 ## 8. Procedimiento
 
-### 1. Clonar el repositorio del frontend
+### Pasos 
 
-```bash
-git clone https://github.com/Daviddotcoms/suda-frontend-s6
-cd suda-frontend-s6
-```
+1. Clona el repositorio del proyecto frontend.
 
-### 2. Verificar funcionamiento local
+Figura 8-1 Clonacion del repositorio frontend.
 
-Instalar dependencias y levantar la app localmente:
+<img src="./compos/c1.PNG" alt="drawing0" width="500"/>
 
-```bash
-npm install
-npm run dev
-```
+2. Ejecuta el proyecto localmente para verificar su correcto funcionamiento.
 
-Verificar que la aplicación funcione accediendo a `http://localhost:5173`
+Figura 8-2 Ejecutacion del proyecto localmente.
 
-### 3. Crear el archivo Dockerfile
+<img src="./compos/c2.PNG" alt="drawing0" width="500"/>
 
-En el directorio raíz, crear un archivo llamado `Dockerfile` con el siguiente contenido:
+3.Crea un archivo Dockerfile adecuado para contenerizar la aplicación.
 
-```Dockerfile
-# Etapa de construcción
-FROM node:18 AS builder
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build
+Figura 8-3 Creacion del archivo dockerfile.
 
-# Etapa de producción
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
+<img src="./compos/wp.PNG" alt="drawing0" width="500"/>
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
 
-### 4. Crear el archivo `.dockerignore`
+4. Genera la imagen Docker a partir del Dockerfile creado.
 
-Este archivo evita copiar archivos innecesarios al contenedor:
+Figura 8-4 Generacion de la imagen docker.
 
-```
-node_modules
-dist
-.dockerignore
-Dockerfile
-*.md
-.git
-```
+<img src="./compos/net.PNG" alt="drawing0" width="500"/>
 
-### 5. Construir la imagen Docker
+5. Crear el contenedor con la aplicación.
 
-```bash
-docker build -t react-suda-app .
-```
+Figura 8-5 Creacion del contenedor 
 
-### 6. Ejecutar el contenedor
-
-```bash
-docker run -d -p 8080:80 --name suda-frontend react-suda-app
-```
-
-### 7. Verificar en el navegador
-
-Abrir en el navegador la URL:  
-http://localhost:8080  
-y verificar que se muestra la aplicación React correctamente.
-
-<img src="./docker-r/resultado-react.png" alt="Resultado React" width="800"/>
+<img src="./compos/net.PNG" alt="drawing0" width="500"/>
 
 ## 9. Resultados esperados
 
-La aplicación React del repositorio `suda-frontend-s6` fue correctamente contenida y ejecutada en un contenedor Docker. Se construyó la imagen a partir de un `Dockerfile`, utilizando una etapa de construcción con Node.js y una etapa final con `nginx` para servir el contenido estático. La aplicación fue accesible desde el navegador en el puerto `8080`, cumpliendo todos los objetivos planteados.
+Al finalizar la práctica, se logró cumplir exitosamente los objetivos planteados. Se creó una imagen Docker que contiene la aplicación React ``“suda-frontend-s6”`` y se desplegó correctamente un contenedor con esta imagen. La aplicación fue accesible a través del puerto ``8000`` del localhost.Durante el desarrollo se aplicaron conceptos fundamentales de contenerización, tales como la creación de imágenes Docker mediante un Dockerfile con multi-stage build para optimizar el tamaño de la imagen, el manejo de puertos para exponer el servicio y la ejecución de contenedores en modo desacoplado.
 
-Se emplearon comandos Docker como `build`, `run`, y se utilizaron buenas prácticas como multistage builds y archivo `.dockerignore`.
+ Todo el desarrollo de la práctica fue documentado con capturas de pantalla que evidencian la clonación, la prueba local, la creación del Dockerfile, la construcción de la imagen y el despliegue del contenedor. Finalmente, se verificó que la aplicación funcionara correctamente en el entorno Docker.
 
 ## 10. Bibliografía
 
-- Docker. (n.d.). What is Docker? https://www.docker.com/
-- Docker Docs. (n.d.). Dockerfile reference. https://docs.docker.com/engine/reference/builder/
-- React Docs. (n.d.). Getting Started. https://reactjs.org/docs/getting-started.html
-- Hostinger. (n.d.). Cómo desplegar apps con Docker. https://www.hostinger.com/tutorials/how-to-deploy-docker-app
+- ¿Qué es el Dockerfile? - IONOS. (n.d.). Retrieved May 16, 2025, from https://www.ionos.com/es-us/digitalguide/servidores/know-how/dockerfile/
+
